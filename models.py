@@ -5,7 +5,7 @@ Class objects for the dyn_model calculations
 # Modules
 # ------------------------------------------------------------------------------
 
-import pickle
+import json
 import pandas as pd
 from funcs import SOCfromOCVtemp 
 from scipy.linalg import cholesky
@@ -88,30 +88,30 @@ class ModelDyn:
     # pylint: disable=too-many-instance-attributes
 
     def __init__(self, temps, etaParam, QParam, GParam, M0Param, MParam, R0Param, RCParam, RParam, SOC, OCV0, OCVrel, OCV, SOC0, SOCrel):
-        self.temps = temps
-        self.etaParam = etaParam
-        self.QParam = QParam
-        self.GParam = GParam
-        self.M0Param = M0Param
-        self.MParam = MParam
-        self.R0Param = R0Param
-        self.RCParam = RCParam
-        self.RParam = RParam
-        self.SOC = SOC
-        self.OCV0 = OCV0
-        self.OCVrel = OCVrel
-        self.OCV = OCV
-        self.SOC0 = SOC0
-        self.SOCrel = SOCrel
+        self.temps = np.array(temps)
+        self.etaParam = np.array(etaParam)
+        self.QParam = np.array(QParam)
+        self.GParam = np.array(GParam)
+        self.M0Param = np.array(M0Param)
+        self.MParam = np.array(MParam)
+        self.R0Param = np.array(R0Param)
+        self.RCParam = np.array(RCParam)
+        self.RParam = np.array(RParam)
+        self.SOC = np.array(SOC)
+        self.OCV0 = np.array(OCV0)
+        self.OCVrel = np.array(OCVrel)
+        self.OCV = np.array(OCV)
+        self.SOC0 = np.array(SOC0)
+        self.SOCrel = np.array(SOCrel)
 
     @classmethod
     def load(cls, pfile):
         """
-        Load attributes from pickle file where pfile is string representing
-        path to the pickle file.
+        Load attributes from json file where pfile is string representing
+        path to the json file.
         """
-        dyn = pickle.load(open(pfile, 'rb'))
-        return cls( dyn.temps, dyn.etaParam, dyn.QParam, dyn.GParam, dyn.M0Param, dyn.MParam, dyn.R0Param, dyn.RCParam, dyn.RParam, dyn.SOC, dyn.OCV0, dyn.OCVrel, dyn.OCV, dyn.SOC0, dyn.SOCrel)
+        dyn = json.load(open(pfile, 'rb'))
+        return cls( dyn['temps'], dyn['etaParam'], dyn['QParam'], dyn['GParam'], dyn['M0Param'], dyn['MParam'], dyn['R0Param'], dyn['RCParam'], dyn['RParam'], dyn['SOC'], dyn['OCV0'], dyn['OCVrel'], dyn['OCV'], dyn['SOC0'], dyn['SOCrel'])
 
 class spkfData:
     """
