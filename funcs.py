@@ -167,9 +167,7 @@ def iterSPKF(vk,ik,Tk,deltat,spkfData):
     M = model.MParam[Tk]
     M0 = model.M0Param[Tk]
     RC = np.exp(-deltat / abs(model.RCParam[Tk])).T
-    RC = RC
     R = model.RParam[Tk]
-    R = R
     R0 = model.R0Param[Tk]
     eta = model.etaParam[Tk]
 

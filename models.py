@@ -110,7 +110,7 @@ class ModelDyn:
         Load attributes from json file where pfile is string representing
         path to the json file.
         """
-        dyn = json.load(open(pfile, 'rb'))
+        dyn = json.load(open(pfile, 'r'))
         return cls( dyn['temps'], dyn['etaParam'], dyn['QParam'], dyn['GParam'], dyn['M0Param'], dyn['MParam'], dyn['R0Param'], dyn['RCParam'], dyn['RParam'], dyn['SOC'], dyn['OCV0'], dyn['OCVrel'], dyn['OCV'], dyn['SOC0'], dyn['SOCrel'])
 
 class spkfData:
